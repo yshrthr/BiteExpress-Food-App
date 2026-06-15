@@ -15,7 +15,7 @@ function Card({names,image,price,type}) {
         <div className = "w-full flex justify-between items-center ">
             <div className = "text-lg font-semibold text-green-600 ">Rs {price} /-</div>
             <div className = "text-green-600 font-semibold flex justify-center items-center gap-2">
-                {type === 'Veg' ? <LuLeafyGreen/> : <GiChickenOven/>}
+                {type === 'veg' ? <LuLeafyGreen/> : <GiChickenOven/>}
                 <span>{type}</span>
             </div>
         </div>
