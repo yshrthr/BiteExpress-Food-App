@@ -5,7 +5,7 @@ import {GiChickenOven} from 'react-icons/gi'
 
 function Card({names,image,price,type}) {
   return (
-    <div className = "w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col gap-3 shadow-2xl hover:border-2 hover:border-green-500 ">
+    <div className = "w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col gap-3 shadow-2xl hover:border-2 hover:border-green-200 ">
         <div className ="w-[100%] h-[60%] overflow-hidden">
             <img src={image} alt={names} className='object-cover w-full h-full rounded-lg'/>
         </div>
