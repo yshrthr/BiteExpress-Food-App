@@ -7,7 +7,7 @@ import { dataContext } from '../context/UserContext'
 import { food_items } from '../food'
 
 function Nav() {
-  const { inputValue, SetInputValue , Category, SetCategory} = useContext(dataContext)
+  const { inputValue, SetInputValue , Category, SetCategory , showCart, SetShowCart} = useContext(dataContext)
   useEffect(() => {
     const filteredItems = food_items.filter((item) => 
       item.food_name.toLowerCase().includes(inputValue.toLowerCase())
@@ -24,9 +24,9 @@ function Nav() {
             <IoSearch className='w-[20px] h-[20px] text-green-500'/>
             <input type="text" placeholder='Search for food ' className='w-[100%] outline-none text-[20px]' value={inputValue} onChange={(e) => SetInputValue(e.target.value)}/>
         </form>
-        <div className='w-[60px] h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl relative'>
+        <div className='w-[60px] h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl relative' onClick={() => SetShowCart(true)}>
             <span className='absolute top-0 right-2 text-green-500 font-semibold'>0</span>
-            <LuShoppingBag  className='w-[30px] h-[30px] text-green-500'/>
+            <LuShoppingBag  className='w-[30px] h-[30px] text-green-500' />
         </div>
         
     </div>

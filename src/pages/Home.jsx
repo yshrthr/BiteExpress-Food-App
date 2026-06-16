@@ -5,10 +5,12 @@ import Card from '../components/Card'
 import { food_items } from '../food'
 import { useState, useEffect ,useContext } from 'react'
 import { dataContext } from '../context/UserContext'
+import {RxCross2} from 'react-icons/rx'
+import Card2 from '../components/Card2'
 
 function Home() {
 
-  const { Category, SetCategory } = useContext(dataContext)
+  const { Category, SetCategory, showCart, SetShowCart  } = useContext(dataContext)
 
   function filterCategory(category) {
     if(category === 'All') {
@@ -21,7 +23,7 @@ function Home() {
   }
 
   return (
-    <div className='w-[100%] min-h-screen bg-red-50'>
+    <div className='w-full overflow-x-hidden min-h-screen bg-red-50'>
         <Nav />
         <div className='w-full flex flex-wrap justify-center items-center gap-4 w-[100%]'>
           {Categories.map((item) =>   {
@@ -36,6 +38,15 @@ function Home() {
             return <Card names={item.food_name} image={item.food_image} price={item.price} type={item.food_type}/>
           })}
         </div>
+        {showCart && 
+        <div className = {'w-[40vw] h-[100%] bg-white fixed top-0 right-0 p-4 transition-all duration-5000 ${showCart ? "translate-x-0" : "translate-x-full"}'}>
+          <header className = 'w-[100%] flex justify-between items-center '>
+            <span className='font-semibold text-[18px]'>Order Items</span>
+            <RxCross2 className='w-[24px] h-[24px] font-semibold text-[18px] hover:text-red-500' onClick={() => SetShowCart(false)}/>
+          </header>
+          <Card2/>
+        </div>
+        }
     </div>
   )
 }
