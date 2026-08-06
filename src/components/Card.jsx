@@ -14,24 +14,29 @@ function Card({id,names,image,price,type}) {
   };
 
   return (
-    <div className = "w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col gap-3 shadow-2xl hover:border-2 hover:border-green-200 ">
-        <div className ="w-[100%] h-[60%] overflow-hidden">
-            <img src={image} alt={names} className='object-cover w-full h-full rounded-lg'/>
-        </div>
-        <div className="text-2xl font-semibold">
+    <div className="w-[90vw] max-w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col justify-between gap-4 shadow-2xl hover:border-2 hover:border-green-200">
+      <div className="h-[240px] overflow-hidden rounded-lg">
+        <img src={image} alt={names} className='object-cover w-full h-full'/>
+      </div>
+
+      <div className='flex-1 flex flex-col justify-between gap-4'>
+        <div className='space-y-3'>
+          <div className="text-2xl font-semibold break-words">
             {names}
-        </div>
-        <div className = "w-full flex justify-between items-center ">
-            <div className = "text-lg font-semibold text-green-600 ">Rs {price} /-</div>
+          </div>
+          <div className = "w-full flex justify-between items-center">
+            <div className = "text-lg font-semibold text-green-600">Rs {price} /-</div>
             <div className = "text-green-600 font-semibold flex justify-center items-center gap-2">
-                {type === 'veg' ? <LuLeafyGreen/> : <GiChickenOven/>}
-                <span>{type}</span>
+              {type === 'veg' ? <LuLeafyGreen/> : <GiChickenOven/>}
+              <span>{type}</span>
             </div>
+          </div>
         </div>
-        <button className='w-full p-3 rounded-lg bg-green-300 text-grey-700 hover:bg-green-600' onClick={handleAddToCart}>
-            Add to Cart
+
+        <button className='w-full p-3 rounded-lg bg-green-300 text-gray-700 hover:bg-green-600 active:bg-green-700 transition-colors duration-200 touch-manipulation' onClick={handleAddToCart}>
+          Add to Cart
         </button>
-            
+      </div>
     </div>
   )
 }
