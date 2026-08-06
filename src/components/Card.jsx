@@ -2,8 +2,16 @@ import React from 'react'
 import {LuLeafyGreen} from 'react-icons/lu'
 import image1 from '../assets/image1.avif'
 import {GiChickenOven} from 'react-icons/gi'
+import {useDispatch} from 'react-redux'
+import { addToCart } from '../redux/cartSlice'
 
-function Card({names,image,price,type}) {
+function Card({id,names,image,price,type}) {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ id, names, image, price, type }));
+  };
+
   return (
     <div className = "w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col gap-3 shadow-2xl hover:border-2 hover:border-green-200 ">
         <div className ="w-[100%] h-[60%] overflow-hidden">
@@ -19,7 +27,7 @@ function Card({names,image,price,type}) {
                 <span>{type}</span>
             </div>
         </div>
-        <button className='w-full p-3 rounded-lg bg-green-300 text-grey-700 hover:bg-green-600'>
+        <button className='w-full p-3 rounded-lg bg-green-300 text-grey-700 hover:bg-green-600' onClick={handleAddToCart}>
             Add to Cart
         </button>
             

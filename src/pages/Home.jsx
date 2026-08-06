@@ -7,10 +7,12 @@ import { useState, useEffect ,useContext } from 'react'
 import { dataContext } from '../context/UserContext'
 import {RxCross2} from 'react-icons/rx'
 import Card2 from '../components/Card2'
+import { useSelector } from 'react-redux'
 
 function Home() {
 
   const { Category, SetCategory, showCart, SetShowCart  } = useContext(dataContext)
+  const cartItems = useSelector((state) => state.cart.items);
 
   function filterCategory(category) {
     if(category === 'All') {
@@ -39,12 +41,20 @@ function Home() {
           })}
         </div>
         {showCart && 
-        <div className = {'w-[40vw] h-[100%] bg-white fixed top-0 right-0 p-4 transition-all duration-5000 ${showCart ? "translate-x-0" : "translate-x-full"}'}>
+        <div className = {`w-[40vw] h-[100%] bg-white fixed top-0 right-0 p-4 transition-all duration-5000 ${showCart ? "translate-x-0" : "translate-x-full"}`}>
           <header className = 'w-[100%] flex justify-between items-center '>
             <span className='font-semibold text-[18px]'>Order Items</span>
             <RxCross2 className='w-[24px] h-[24px] font-semibold text-[18px] hover:text-red-500' onClick={() => SetShowCart(false)}/>
           </header>
-          <Card2/>
+          {cartItems.map((item) => (
+            <Card2
+              key={item.id}
+              names={item.names}
+              image={item.image}
+              price={item.price}
+              type={item.type}
+            />
+          ))}
         </div>
         }
     </div>

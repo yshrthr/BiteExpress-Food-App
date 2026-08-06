@@ -5,8 +5,14 @@ import App from './App.jsx'
 import Home from './pages/Home.jsx'
 import UserContext from './context/UserContext.jsx'
 
+import { Provider } from 'react-redux'
+import { store } from './redux/store.js'
+
 createRoot(document.getElementById('root')).render(
-    <UserContext>
-      <Home />
-    </UserContext>  
-)
+    <Provider store={store}>
+      <UserContext>
+        <Home />
+      </UserContext>
+    </Provider>
+  )
+
