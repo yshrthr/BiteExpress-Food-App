@@ -23,7 +23,6 @@ function Home() {
       SetCategory(newCategory)
     }
   }
-
   return (
     <div className='w-full overflow-x-hidden min-h-screen bg-red-50'>
         <Nav />
@@ -37,24 +36,32 @@ function Home() {
         </div>
         <div className='w-full flex flex-wrap justify-center items-center gap-4 w-[100%] mt-10'>
           {Category.map((item)=> {
-            return <Card names={item.food_name} image={item.food_image} price={item.price} type={item.food_type}/>
+            return <Card id={item.id} names={item.food_name} image={item.food_image} price={item.price} type={item.food_type}/>
           })}
         </div>
         {showCart && 
-        <div className = {`w-[40vw] h-[100%] bg-white fixed top-0 right-0 p-4 transition-all duration-5000 ${showCart ? "translate-x-0" : "translate-x-full"}`}>
+        <div className = {`w-[40vw] h-[100%] overflow-y-auto bg-white fixed top-0 right-0 p-4 transition-all duration-5000 ${showCart ? "translate-x-0" : "translate-x-full"}`}>
           <header className = 'w-[100%] flex justify-between items-center '>
             <span className='font-semibold text-[18px]'>Order Items</span>
             <RxCross2 className='w-[24px] h-[24px] font-semibold text-[18px] hover:text-red-500' onClick={() => SetShowCart(false)}/>
           </header>
           {cartItems.map((item) => (
             <Card2
-              key={item.id}
+              id={item.id}
               names={item.names}
               image={item.image}
               price={item.price}
               type={item.type}
+              quantity={item.quantity}
             />
           ))}
+          <footer className='w-full flex-col justify-between items-center mt-4 gap-3'>
+            <div className='w-full flex justify-between items-center mt-4'>
+              <span className='font-semibold text-[28px]'>Total</span>
+              <span className='font-semibold text-[28px]'>Rs {cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)} /-</span>
+            </div>
+            <button className='w-[75%] p-3 rounded-lg bg-green-300 text-grey-700 hover:bg-green-600 mt-4'>Place Order</button>
+          </footer>
         </div>
         }
     </div>

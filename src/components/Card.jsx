@@ -9,6 +9,7 @@ function Card({id,names,image,price,type}) {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
+    console.log('Adding to cart:', { id, names, image, price, type });
     dispatch(addToCart({ id, names, image, price, type }));
   };
 
